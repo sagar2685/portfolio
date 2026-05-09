@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="color-scheme" content="light">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sagar Chakrabarty — Data Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  /* ── THEME SWITCHER ── */
+  :root {
+    --dark:         #0d2b2b;
+    --mid:          #133a3a;
+    --teal:         #1e6060;
+    --accent:       #2e9e8e;
+    --pill-bg:      #2a5c5c;
+    --pill-active:  #1e9080;
+    --muted:        #c8dada;
+    --light:        #ffffff;
+    --card-bg:      #f7fafa;
+    --skill-bg:     #f0f7f7;
+  }
+
+  body.rose {
+    --dark:         #2b0d1a;
+    --mid:          #3a1022;
+    --teal:         #7a1f3d;
+    --accent:       #c0395f;
+    --pill-bg:      #5c1e30;
+    --pill-active:  #a02848;
+    --muted:        #dac8cf;
+    --card-bg:      #fdf7f9;
+    --skill-bg:     #f7f0f3;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #e8eeee;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 14px;
+  }
+
+  body.rose { background: #ede8ea; }
+
+  /* ── THEME TOGGLE ── */
+  .theme-bar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background: white;
+    padding: 8px 16px;
+    border-radius: 30px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    font-size: 12px;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .theme-bar span { font-weight: 600; color: #444; }
+.skills-grid{
+  display:grid !important;
+  grid-template-columns:1fr 1fr !important;
+  gap:6px !important;
+  align-items:stretch !important;
+}
+
+.skill-item{
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:flex-start !important;
+  min-height:58px !important;
+  padding:6px 10px !important;
+  line-height:1.35 !important;
+  break-inside:avoid !important;
+  page-break-inside:avoid !important;
+}
+
+.skill-item strong{
+  margin-bottom:2px !important;
+}
+  .theme-btn {
+    padding: 5px 16px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.2s;
+  }
+
+  .theme-btn.teal { background: #0d2b2b; color: white; }
+  .theme-btn.rose { background: #2b0d1a; color: white; }
+  .theme-btn:hover { opacity: 0.85; transform: scale(1.04); }
+
+  /* ── RESUME ── */
+.resume {
+  width: 900px;
+  display: grid;
+  grid-template-columns: 285px 1fr;
+  background: white;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  border-radius: 12px;
+  overflow: hidden;
+}
+  /* ── SIDEBAR ── */
+  .sidebar {
+    background: var(--dark);
+    color: var(--light);
+    padding: 32px 20px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .avatar-wrap { display: flex; justify-content: center; }
+  .avatar{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  overflow:hidden;
+  border:4px solid var(--accent);
+  background:var(--teal);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:50%;
+}
+  .sidebar-section-title {
+    background: var(--pill-bg);
+    color: white;
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    padding: 6px 16px; border-radius: 20px;
+    margin-bottom: 11px; display: inline-block;
+    transition: background 0.4s;
+  }
+
+  .contact-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .contact-list li {
+    font-size: 10.5px; color: var(--muted);
+    display: flex; align-items: flex-start; gap: 8px;
+  }
+  .contact-list li .icon { font-size: 12px; color: var(--accent); flex-shrink: 0; width: 16px; text-align: center; margin-top: 1px; transition: color 0.4s; }
+  .contact-list li a { color: var(--muted); text-decoration: none; word-break: break-all; transition: color 0.2s; }
+  .contact-list li a:hover { color: var(--accent); text-decoration: underline; }
+
+  .edu-item { margin-bottom: 11px; }
+  .edu-item .school { font-size: 11.5px; font-weight: 700; color: white; }
+  .edu-item .degree { font-size: 10.5px; color: var(--muted); line-height: 1.4; }
+  .edu-item .year   { font-size: 10px; color: var(--accent); margin-top: 2px; transition: color 0.4s; }
+
+  .cert-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .cert-list li {
+    font-size: 10px; color: var(--muted);
+    padding: 5px 10px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 6px;
+    border-left: 3px solid var(--accent);
+    line-height: 1.35;
+    transition: border-color 0.4s;
+  }
+  .cert-list li a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .cert-list li a:hover { color: var(--accent); }
+
+  /* ── MAIN ── */
+  .main { background: #fff; display: flex; flex-direction: column; }
+
+  .main-header {
+    background: var(--mid);
+    padding: 28px 30px 22px;
+    color: white;
+    transition: background 0.4s;
+  }
+
+  .main-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 34px; font-weight: 700;
+    letter-spacing: -0.5px; line-height: 1.1;
+  }
+
+  .main-header .role {
+    font-size: 11px; color: var(--accent);
+    font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; margin: 6px 0 10px;
+    transition: color 0.4s;
+  }
+html, body{
+  height:auto !important;
+  overflow:visible !important;
+}
+
+.resume{
+  overflow:visible !important;
+  height:auto !important;
+}
+
+.main,
+.main-body{
+  overflow:visible !important;
+  height:auto !important;
+}
+  .main-header .bio {
+    font-size: 11px; color: var(--muted);
+    line-height: 1.75; max-width: 500px;
+  }
+
+  .highlights { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 13px; }
+  .highlight-chip {
+    background: var(--pill-active);
+    color: white; font-size: 9.5px; font-weight: 600;
+    padding: 4px 11px; border-radius: 20px; letter-spacing: 0.2px;
+    transition: background 0.4s;
+  }
+
+  .main-body { padding: 18px 26px 22px; flex: 1; }
+  .section { margin-bottom: 16px; }
+
+  .section-header {
+    background: var(--dark);
+    color: white; font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    padding: 6px 18px; border-radius: 20px;
+    display: inline-block; margin-bottom: 11px;
+    transition: background 0.4s;
+  }
+
+  .job { margin-bottom: 12px; }
+  .job-title-row { display: flex; justify-content: space-between; align-items: baseline; }
+  .job-company { font-size: 12.5px; font-weight: 700; color: var(--dark); transition: color 0.4s; }
+  .job-period { font-size: 10px; color: var(--teal); font-weight: 600; transition: color 0.4s; }
+  .job-role { font-size: 11px; color: var(--teal); font-weight: 500; margin: 1px 0 5px; transition: color 0.4s; }
+
+  .job ul { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+  .job ul li {
+    font-size: 11px; color: #333; line-height: 1.5;
+    padding-left: 13px; position: relative;
+  }
+  .job ul li::before { content: "•"; color: var(--accent); position: absolute; left: 0; font-weight: 700; transition: color 0.4s; }
+
+  .projects-grid{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+.project-card{
+  border-left:3px solid var(--accent);
+  padding:7px 11px;
+  background:var(--card-bg);
+  border-radius:0 6px 6px 0;
+}
+
+.project-card .proj-name{
+  font-size:11px;
+  font-weight:700;
+  color:var(--dark);
+  margin-bottom:2px;
+  line-height:1.3;
+}
+
+.project-card .proj-stack{
+  font-size:9px;
+  color:var(--teal);
+  margin-bottom:3px;
+  line-height:1.35;
+}
+
+.project-card .proj-desc{
+  font-size:10px;
+  line-height:1.45;
+  color:#444;
+  text-align:justify;
+}
+  .project-card {
+    border-left: 3px solid var(--accent);
+    padding: 8px 12px;
+    background: var(--card-bg);
+    border-radius: 0 6px 6px 0;
+    transition: border-color 0.4s, background 0.4s;
+  }
+  .project-card .proj-name { font-size: 12px; font-weight: 700; color: var(--dark); transition: color 0.4s; }
+  .project-card .proj-stack { font-size: 10px; color: var(--teal); margin: 2px 0 4px; font-style: italic; transition: color 0.4s; }
+  .project-card .proj-desc { font-size: 11px; color: #444; line-height: 1.5; }
+
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .skill-item {
+    font-size: 10.5px; color: #222;
+    padding: 5px 10px;
+    background: var(--skill-bg);
+    border-radius: 6px;
+    border-left: 3px solid var(--accent);
+    line-height: 1.4;
+    transition: background 0.4s, border-color 0.4s;
+  }
+  .skill-item strong { color: var(--teal); display: block; font-size: 10px; margin-bottom: 1px; transition: color 0.4s; }
+
+  @media print {
+     .page-break{
+    page-break-before: always;
+    break-before: page;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
+    }
+    html, body {
+      padding: 0; margin: 0;
+      background: white;
+      display: block;
+      width: 100%;
+    }
+    .theme-bar { display: none !important; }
+    .resume {
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  width: 100% !important;
+  display: grid !important;
+  grid-template-columns: 260px 1fr !important;
+  min-height: auto !important;
+  height: auto !important;
+}
+.main,
+.main-body{
+  overflow: visible !important;
+  height: auto !important;
+}
+    
+    .sidebar {
+      display: flex !important;
+      flex-direction: column !important;
+      background: #0d2b2b !important;
+      color: white !important;
+      padding: 32px 20px 28px !important;
+    }
+    .contact-list li a {
+  color: var(--muted);
+  text-decoration: none;
+  display: inline-block;
+  width: 100%;
+}
+    .sidebar * { color: white !important; }
+    .sidebar a { color: #c8dada !important; }
+    .contact-list li { color: #c8dada !important; }
+    .contact-list li a { color: #c8dada !important; }
+    .edu-item .degree { color: #c8dada !important; }
+    .edu-item .year { color: #2e9e8e !important; }
+    .cert-list li { color: #c8dada !important; background: rgba(255,255,255,0.05) !important; border-left-color: #2e9e8e !important; }
+    .cert-list li a { color: #c8dada !important; }
+    .avatar { background: #1e6060 !important; color: white !important; border: 4px solid #2e9e8e !important; }
+    .main-header {
+      background: #133a3a !important;
+      color: white !important;
+    }
+    .sidebar-section-title {
+      background: #2a5c5c !important;
+      color: white !important;
+    }
+    .section-header {
+      background: #0d2b2b !important;
+      color: white !important;
+    }
+    .highlight-chip {
+      background: #1e9080 !important;
+      color: white !important;
+    }
+    .cert-list li {
+      background: rgba(255,255,255,0.07) !important;
+    }
+    .resume{
+  width:100% !important;
+  min-height:auto !important;
+}
+
+.main-body{
+  padding-bottom:12px !important;
+}
+
+.skills-grid{
+  gap:4px !important;
+}
+
+.skill-item{
+  padding:4px 8px !important;
+  font-size:10px !important;
+}
+    .avatar {
+      background: #1e6060 !important;
+      border-color: #2e9e8e !important;
+      color: white !important;
+    }
+    a { color: inherit !important; text-decoration: none !important; }
+    @page { margin: 0; size: A4; }
+  }
+</style>
+</head>
+<body id="bodyEl">
+
+<!-- THEME TOGGLE -->
+<div class="theme-bar">
+  <span>Theme:</span>
+  <button class="theme-btn teal" onclick="setTheme('teal')">🌿 Teal (Default)</button>
+  <button class="theme-btn rose" onclick="setTheme('rose')">🌹 Rose</button>
+</div>
+
+<!-- RESUME -->
+<div class="resume">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="avatar-wrap">
+    <div class="avatar">
+  <img src="./my photo (1).jpg" alt="Sagar Chakrabarty">
+</div>
+    </div>
+
+    <!-- CONTACT -->
+    <ul class="contact-list">
+  <li>
+    <span class="icon">📞</span>
+    <a href="tel:+918134896752">
+      +91 81348 96752
+    </a>
+  </li>
+
+  <li>
+    <span class="icon">✉</span>
+    <a href="mailto:chakrabartysagar000@gmail.com">
+      chakrabartysagar000@gmail.com
+    </a>
+  </li>
+
+  <li>
+    <span class="icon">🔗</span>
+    <a href="https://www.linkedin.com/in/sagar-chakrabarty-2ab2761b3">
+      linkedin.com/in/sagar-chakrabarty
+    </a>
+  </li>
+
+  <li>
+    <span class="icon">💻</span>
+    <a href="https://github.com/sagar2685">
+      github.com/sagar2685
+    </a>
+  </li>
+
+  <li>
+    <span class="icon">📍</span>
+    <span>Kolkata, India</span>
+  </li>
+</ul>
+
+    <!-- EDUCATION -->
+    <div>
+      <div class="sidebar-section-title">Education</div>
+      <div class="edu-item">
+        <div class="school">Lovely Professional University</div>
+        <div class="degree">MCA — Data Science</div>
+        <div class="year">Jan 2024 – Feb 2026</div>
+      </div>
+      <div class="edu-item">
+        <div class="school">Karimganj College</div>
+        <div class="degree">Assam University<br>Bachelor of Science (B.Sc.)</div>
+        <div class="year">Aug 2020 – Jun 2023</div>
+      </div>
+    </div>
+
+    <!-- CERTIFICATIONS -->
+    <div>
+      <div class="sidebar-section-title">Certifications</div>
+      <ul class="cert-list">
+        <li><a href="https://credentials.databricks.com/5caa5710-da1e-4613-8958-6914b4d79d4f#acc.vTdlXhCa" target="_blank">Databricks Data Engineer Associate</a></li>
+        <li><a href="https://credentials.databricks.com/c8629673-f62e-4ca1-a874-8b9df54ddb8e#acc.MhpiW2CX" target="_blank">Databricks ML Associate</a></li>
+        <li><a href="https://achieve.snowflake.com/f7425bf4-c8c3-4e8e-ae8d-390726bf34e1#acc.1PkXUtGd" target="_blank">Snowflake SnowPro Core</a></li>
+        <li><a href="https://verify.skilljar.com/c/a79n96d2f3zp" target="_blank">Anthropic Claude 101</a></li>
+        <li><a href="https://verify.skilljar.com/c/7cvfrx4jpcb4" target="_blank">Claude Code in Action</a></li>
+        <li><a href="https://verify.skilljar.com/c/an8gt3ok5hmb" target="_blank">Claude with Amazon Bedrock</a></li>
+        <li>Deloitte Agentic AI Badge</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+    <div class="main-header">
+      <h1>Sagar Chakrabarty</h1>
+      <div class="role">Data Engineer · Big 4 · AI / LLM</div>
+      <div class="bio">
+        Data Engineer with 3+ years at Deloitte building large-scale batch and real-time data pipelines powering analytics, reporting, and ML use cases. Full SDLC experience across multi-cloud platforms — Azure, AWS, and GCP. Active contributor to Agentic AI and LLM-powered data workflows. Multi-award recipient and Campus Rising Star nominee.
+      </div>
+      <div class="highlights">
+        <span class="highlight-chip">⚡ 200M+ Records</span>
+        <span class="highlight-chip">📊 400+ Tables</span>
+        <span class="highlight-chip">🚀 30–40% Efficiency Gains</span>
+        <span class="highlight-chip">🏆 Outstanding Performance Award</span>
+        <span class="highlight-chip">⭐ Campus Rising Star</span>
+      </div>
+    </div>
+
+    <div class="main-body">
+
+      <!-- EXPERIENCE -->
+      <div class="section">
+        <div class="section-header">Work Experience</div>
+        <div class="job">
+          <div class="job-title-row">
+            <div class="job-company">Deloitte — US Offices of India</div>
+            <div class="job-period">Oct 2023 – Present</div>
+          </div>
+          <div class="job-role">Data Engineer · Analyst 1</div>
+          <ul>
+            <li>Built large-scale batch &amp; real-time pipelines using Python, PySpark, and Databricks across 400+ tables and 5+ source systems — powering analytics, reporting, and ML use cases.</li>
+            <li>Improved pipeline efficiency 30–40% processing 200M+ records via Spark optimization, partitioning, and incremental load strategies across Azure, AWS, and GCP.</li>
+            <li>Designed analytical data models, KPI datasets, and canonical data assets (Star/Snowflake schema, OLTP/OLAP) consumed by product, data science, and engineering teams.</li>
+            <li>Contributed to Agentic AI and LLM application development — built intelligent pipeline orchestration on Databricks ML; integrated MLflow for experiment tracking and model versioning.</li>
+            <li>Led CI/CD workflows, code reviews, and documentation; mentored junior engineers; collaborated with Product, Business, and Analyst stakeholders on data quality and requirements.</li>
+            <li>Optimized <strong>SQL Server queries and Informatica PowerCenter workflows</strong> using performance optimization techniques — caching, indexing, and partitioning — significantly reducing query execution times and improving throughput across enterprise data pipelines.</li>
+            <li>Optimized <strong>IDMC (Informatica Data Management Cloud) jobs</strong> using <strong>Full Push-Down Optimization (Full PDO)</strong>, offloading transformation logic directly to source/target databases and reducing job run times substantially.</li>
+            <li>Optimized <strong>Databricks Delta tables</strong> using <strong>Z-Ordering and Liquid Clustering</strong> techniques — improving query performance, reducing data scan costs, and accelerating analytical workloads on large-scale datasets.</li>
+            <li>Built reusable <strong>SCD Type 1 and Type 2 frameworks</strong> for handling complex <strong>LAD records </strong>, ensuring accurate historical tracking and consistent downstream reporting.</li>
+
+<li>Built reusable <strong>SCD Type 1 & Type 2 frameworks</strong> to handle <strong> backdated data flows</strong> with accurate historical tracking.</li>
+
+<li>Developed standardized <strong>Type 1 & Type 2 frameworks</strong> adopted across multiple workstreams to improve scalability and reduce development effort.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- PROJECTS -->
+       <div class="section "></div>
+      
+        <div class="section-header">Recent Projects</div>
+        <div class="projects-grid">
+
+          <div class="project-card">
+            <div class="proj-name">Batch &amp; Real-Time Data Pipeline Platform</div>
+            <div class="proj-stack">Python · PySpark · Airflow · Snowflake · AWS (S3/Glue/Lambda) · GitLab CI/CD</div>
+<div class="proj-desc">
+Designed and built scalable batch & real-time pipelines across 400+ tables with automated validation, SLA monitoring, and data quality checks. Collaborated with cross-functional teams and mentored junior engineers while delivering projects on time.
+</div>          </div>
+
+          <div class="project-card">
+            <div class="proj-name">Cloud Lakehouse Migration + Agentic AI</div>
+            <div class="proj-stack">Azure Databricks · PySpark · Spark SQL · ADF · Delta Lake · LLM/Agentic AI · Azure DevOps</div>
+<div class="proj-desc">
+Migrated 5+ source systems (400+ tables) to a Databricks Medallion Lakehouse processing 200M+ records in under 5 minutes. Built orchestration workflows, Master/Detail Silver models, and reusable SCD Type 1 & 2 frameworks.
+</div>          </div>
+
+          <div class="project-card">
+            <div class="proj-name">Enterprise ETL Platform — On-Prem to Cloud</div>
+            <div class="proj-stack">Informatica · SQL Server · Oracle · Python · Shell Scripting · Control-M</div>
+<div class="proj-desc">
+Enhanced Informatica PowerCenter jobs by optimizing performance, reducing runtime, and preventing SLA breaches. Delivered ETL pipelines across 500+ tables with Python-based monitoring and automation support.
+</div>          </div>
+
+        </div>
+      </div>
+
+      <!-- SKILLS -->
+      <div class="section">
+        <div class="section-header">Technical Skills</div>
+        <div class="skills-grid">
+          <div class="skill-item"><strong>Core</strong>Python, SQL, PySpark, Databricks, Apache Spark, Airflow</div>
+          <div class="skill-item"><strong>Data Pipelines</strong>ETL/ELT, Batch &amp; Real-Time, Delta Lake, dbt, API Integrations</div>
+          <div class="skill-item"><strong>Modeling &amp; Quality</strong>Dimensional Modeling, Great Expectations, Data Lineage, SLA</div>
+          <div class="skill-item"><strong>Cloud</strong>Azure (ADF, ADLS Gen2), AWS (S3, Glue, Lambda), GCP (BigQuery), Snowflake</div>
+          <div class="skill-item"><strong>AI / LLM</strong>Agentic AI, LLM Pipelines, MLflow, Databricks ML, Feature Engineering</div>
+          <div class="skill-item"><strong>DevOps &amp; CI/CD</strong>Git, GitLab CI/CD, Azure DevOps , Familiar with <strong>Docker, Kubernetes, and Terraform</strong></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function setTheme(theme) {
+    document.getElementById('bodyEl').className = theme === 'rose' ? 'rose' : '';
+  }
+</script>
+
+</body>
+</html>
